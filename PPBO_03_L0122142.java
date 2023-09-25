@@ -3,6 +3,11 @@
   NIM  : L0122142
  */
 
+/*
+  file utama berupa:
+  - ui/menu dari aplikasi Pencatatan Buah dan Sayur.
+ */
+
 import java.util.Scanner;
 
 public class PPBO_03_L0122142 {
@@ -29,6 +34,10 @@ public class PPBO_03_L0122142 {
     scanner.close();
   }
 
+  /*
+    method untuk menampilkan daftar sayur ke console
+    menggunakan perulangan.
+   */
   private static void showAllVegetable(Logic logic) {
     if (logic.getArrayListVegetable().isEmpty()) {
       System.out.println("\n[Belum ada data sayur]");
@@ -45,6 +54,10 @@ public class PPBO_03_L0122142 {
     }
   }
 
+  /*
+    method untuk menampilkan daftar buah ke console
+    menggunakan perulangan.
+   */
   private static void showAllFruit(Logic logic) {
     if (logic.getArrayListFruit().isEmpty()) {
       System.out.println("\n[Belum ada data buah]");
@@ -61,6 +74,9 @@ public class PPBO_03_L0122142 {
     }
   }
 
+  /*
+    method: mengatur ui/menu untuk memasukkan input user.
+   */
   private static void addFruitOrVegetable(
       Scanner scanner,
       Logic logic
@@ -75,6 +91,8 @@ public class PPBO_03_L0122142 {
 
     boolean isFinished = false;
 
+    // perulangan untuk meminta masukan dari user
+    // sekaligus melakukan pengecekan masukan dari user
     while (!isFinished) {
       System.out.print(">> ");
       String input = scanner.nextLine();
@@ -82,6 +100,7 @@ public class PPBO_03_L0122142 {
         isFinished = true;
       else {
         try {
+          // memanggil logic untuk melakukan validasi input dari user
           final CheckResult result = logic.checkInput(input);
           if (result == CheckResult.VALID_FRUIT) {
             String name = logic.addFruit(input);
@@ -92,6 +111,7 @@ public class PPBO_03_L0122142 {
           } else
             throw new Exception("Masukan yang Anda berikan tidak valid!");
         } catch (Exception e) {
+          // menangani error input yang mungkin terjadi
           System.out.printf("   Error: %s\n", e.getMessage());
         }
       }

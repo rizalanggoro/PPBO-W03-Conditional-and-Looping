@@ -1,5 +1,5 @@
 public class Vegetable {
-  private String name;
+  private final String name;
 
   public Vegetable(
       String name
